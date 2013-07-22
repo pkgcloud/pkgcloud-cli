@@ -1,0 +1,8 @@
+#!/usr/bin/env node
+var program = require('commander');
+
+program
+  .command('flavors', 'Flavor commands')
+  .command('images', 'Image commands')
+  .command('servers', 'Server commands')
+  .parse(process.argv);

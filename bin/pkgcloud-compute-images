@@ -1,0 +1,44 @@
+#!/usr/bin/env node
+var program = require('commander');
+var helpers = require('../helpers');
+var table = require('cli-table');
+var dateFormat = require('dateFormat');
+
+program
+  .option('-c, --config <path>', 'set config path [./cloud.json]')
+  .parse(process.argv);
+
+var config = program.config;
+
+helpers.init(config, function(err, cloud) {
+  cloud.getImages(function(err, regions) {
+    if (err) {
+      console.log(err);
+      process.exit(1);
+    }
+    var tbl = new table({
+      head: ['ID', 'NAME', 'CREATED', 'UPDATED', 'STATUS', 'PROGRESS'],
+      colWidths: [40, 50, 22, 22, 8, 5]
+    });
+    for (var reg in regions) {
+      console.log('================================');
+      console.log('Region: '+reg);
+      var images = regions[reg];
+      for (var iter in images) {
+        var img = images[iter];
+        var data = [
+          img.id,
+          img.name,
+          dateFormat(img.created, 'yyyy-mm-dd h:MM:ss'),
+          dateFormat(img.update, 'yyyy-mm-dd h:MM:ss'),
+          img.status,
+          img.progress
+        ];
+        tbl.push(data);
+      }
+      console.log(tbl.toString());
+    }
+  });
+});
+
+

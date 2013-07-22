@@ -1,0 +1,28 @@
+{
+  "name": "pkgcloud-cli",
+  "version": "0.0.1",
+  "description": "CLI for pkgcloud",
+  "main": "index.js",
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:rosskukulinski/pkgcloud-cli.git"
+  },
+  "keywords": [
+    "pkgcloud",
+    "nodejs",
+    "cli"
+  ],
+  "author": "Ross Kukulinski",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "~2.0.0",
+    "node-cloud": "git+ssh://git@github.com:rosskukulinski/node-cloud.git",
+    "nconf": "~0.6.7",
+    "path": "~0.4.9",
+    "cli-table": "~0.2.0",
+    "dateformat": "~1.0.6-1.2.3"
+  }
+}

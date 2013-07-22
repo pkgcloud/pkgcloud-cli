@@ -1,0 +1,10 @@
+#!/usr/bin/env node
+
+var program = require('commander');
+
+program
+  .version('0.0.1')
+  .command('compute', 'Compute commands')
+  .command('storage', 'Storage commands')
+  .command('database', 'Database commands')
+  .parse(process.argv);
