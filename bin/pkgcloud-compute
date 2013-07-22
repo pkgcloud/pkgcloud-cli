@@ -2,7 +2,7 @@
 var program = require('commander');
 
 program
-  .command('flavors', 'Flavor commands')
-  .command('images', 'Image commands')
-  .command('servers', 'Server commands')
+  .command('flavor-list', 'List flavors')
+  .command('image-list', 'List images')
+  .command('server-list', 'List servers')
   .parse(process.argv);

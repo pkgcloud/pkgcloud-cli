@@ -9,6 +9,9 @@ program
   .parse(process.argv);
 
 var config = program.config;
+if (!config) {
+  config = process.env['HOME']+'/pkgcloud-cli.json';
+}
 
 helpers.init(config, function(err, cloud) {
   cloud.getServers(function(err, regions) {
