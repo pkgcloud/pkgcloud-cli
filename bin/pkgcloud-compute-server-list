@@ -22,7 +22,7 @@ helpers.init(config, function(err, cloud) {
     for (var reg in regions) {
       var tbl = new table({
         head: ['ID', 'NAME', 'ADDRESS', 'IMAGE', 'FLAVOR', 'STATUS', 'PROGRESS'],
-        colWidths: [40, 25, 16, 40, 10, 10, 10]
+        colWidths: [40, 25, 16, 40, 10, 15, 10]
       });
       console.log('================================');
       console.log('Region: '+reg);
@@ -41,10 +41,10 @@ helpers.init(config, function(err, cloud) {
           img.id,
           img.name,
           address,
-          img.imageId,
-          img.flavorId,
-          img.status,
-          img.progress
+          img.imageId || '',
+          img.flavorId || '',
+          img.status || 'None',
+          img.progress || 'None'
         ];
         tbl.push(data);
       }

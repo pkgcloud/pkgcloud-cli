@@ -6,6 +6,7 @@ var dateFormat = require('dateFormat');
 
 program
   .option('-c, --config <path>', 'set config path [./cloud.json]')
+  .option('-r, --region <region>', 'List images from this region')
   .parse(process.argv);
 
 var config = program.config;
@@ -32,10 +33,10 @@ helpers.init(config, function(err, cloud) {
         var data = [
           img.id,
           img.name,
-          dateFormat(img.created, 'yyyy-mm-dd h:MM:ss'),
-          dateFormat(img.update, 'yyyy-mm-dd h:MM:ss'),
-          img.status,
-          img.progress
+          dateFormat(img.created, 'yyyy-mm-dd h:MM:ss') || 'N/A',
+          dateFormat(img.update, 'yyyy-mm-dd h:MM:ss') || 'N/A',
+          img.status || 'N/A',
+          img.progress|| 'N/A'
         ];
         tbl.push(data);
       }
