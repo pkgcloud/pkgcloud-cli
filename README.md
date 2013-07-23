@@ -8,9 +8,10 @@ Thanks to @dscape for suggesting the idea when Nodejitsu released the pkgcloud m
 
 
 1. npm install -g pkgcloud-cli
-1. Create a pkgcloud-cli.json file in your home directory specifying the pkgcloud compute config parameters:
+1. Create a pkgcloud-cli.json file in your home directory specifying the pkgcloud compute config parameters
 
 ```
+
   [  
     {
       "authUrl": "https://identity.api.rackspacecloud.com",
