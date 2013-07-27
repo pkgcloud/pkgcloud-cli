@@ -1,13 +1,15 @@
 {
   "name": "pkgcloud-cli",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "CLI for pkgcloud",
   "scripts": {
-    "test": "make test",
-    "pkgcloud": "./bin/pkgcloud"
+    "test": "make test"
   },
   "engines": {
     "node": ">= 0.6.x"
+  },
+  "bin": {
+    "pkgcloud": "./bin/pkgcloud"
   },
   "repository": {
     "type": "git",
