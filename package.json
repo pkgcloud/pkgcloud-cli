@@ -2,9 +2,12 @@
   "name": "pkgcloud-cli",
   "version": "0.0.1",
   "description": "CLI for pkgcloud",
-  "main": "index.js",
   "scripts": {
-    "test": "make test"
+    "test": "make test",
+    "pkgcloud": "./bin/pkgcloud"
+  },
+  "engines": {
+    "node": ">= 0.6.x"
   },
   "repository": {
     "type": "git",
@@ -15,7 +18,7 @@
     "nodejs",
     "cli"
   ],
-  "author": "Ross Kukulinski",
+  "author": "Ross Kukulinski <rossk@labs.asti-usa.com>",
   "license": "MIT",
   "dependencies": {
     "commander": "~2.0.0",
