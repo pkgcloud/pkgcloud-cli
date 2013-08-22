@@ -1,44 +1,52 @@
 # pkgcloud-cli
 
-Basic commandline wrapper around the wonderful pkgcloud nodejs module.
+Basic commandline wrapper around the pkgcloud nodejs module.
 
-Thanks to @dscape for suggesting the idea when Nodejitsu released the pkgcloud module (https://groups.google.com/forum/#!topic/nodejs/nMIxPJO7o20)
+```
+npm install -g pkgcloud-cli
+```
 
-## THIS IS UNDER ACTIVE DEVELOPMENT AND CURRENTLY DEPENDS ON A PRIVATE PACKAGE.
+Create a pkgcloud-cli.json file in your home directory specifying the pkgcloud compute config parameters.  These parameters are identical to pkgcloud with the exception of adding a 'region' parameter.  Initially,
+region will be ignored and it will only use the first config for each type (compute, storage, database).  
 
-
-1. npm install -g pkgcloud-cli
-
-1. Create a pkgcloud-cli.json file in your home directory specifying the pkgcloud compute config parameters.  These parameters are identical to pkgcloud with the exception of adding a 'region' parameter.
+However, the intent is to expand pkgcloud-cli to use a new library, multi-pkgcloud which will allow interacting with multiple provider endpoints at once.
 
 
 ```
-
-  [  
-    {
-      "authUrl": "https://identity.api.rackspacecloud.com",
-      "region": "ORD",
-      "provider": "rackspace",
-      "username": "yourusername",
-      "apiKey": "yourapikey"
-    },
-    {
-      "authUrl": "https://identity.api.rackspacecloud.com",
-      "region": "DFW",
-      "provider": "rackspace",
-      "username": "yourusername",
-      "apiKey": "yourapikey"
-    },
-    {
-      "authUrl": "https://lon.identity.api.rackspacecloud.com",
-      "region": "LON",
-      "provider": "rackspace",
-      "username": "yourusername",
-      "apiKey": "yourapikey"
-    }
+{
+  "compute": [  
+      {
+        "authUrl": "https://identity.api.rackspacecloud.com",
+        "region": "ORD",
+        "provider": "rackspace",
+        "username": "yourusername",
+        "apiKey": "yourapikey"
+      },
+      {
+        "authUrl": "https://identity.api.rackspacecloud.com",
+        "region": "DFW",
+        "provider": "rackspace",
+        "username": "yourusername",
+        "apiKey": "yourapikey"
+      },
+      {
+        "authUrl": "https://lon.identity.api.rackspacecloud.com",
+        "region": "LON",
+        "provider": "rackspace",
+        "username": "yourusername",
+        "apiKey": "yourapikey"
+      }
+    ],
+  "storage": [
+  ],
+  "database": [
   ]
+}
+
 ```
-1. use pkgcloud-cli
+
+use pkgcloud-cli
+
 ```
  $pkgcloud --help
 

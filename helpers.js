@@ -1,12 +1,19 @@
-var cloud = require('node-cloud');
+var cloud = require('pkgcloud');
 var fs = require('fs');
+var table = require('cli-table');
+var dateFormat = require('dateFormat');
 
 var exports = {};
-var cloud_options = {
-  flavor_prefix: '',
-  image_prefix: '',
-  server_prefix: ''
+
+var client;
+
+var CLIENT_TYPES = {
+  'compute': 'COMPUTE',
+  'database': 'DATABASE',
+  'storage': 'STORAGE'
 };
+
+exports.CLIENT_TYPES = CLIENT_TYPES;
 
 var loadConfig = function (file) {
   try {
@@ -25,19 +32,39 @@ var loadConfig = function (file) {
   }
 };
 
-exports.init = function(config, callback) {
+exports.init = function(config, type, callback) {
   if (!config) {
     return callback(new Error('No config file specified.  See -h for assistance'));
   }
   config = loadConfig(config);
-  cloud.init(config, cloud_options, function(err) {
-    if (err) {
-      return callback(err);
-    }
-    else {
-      callback(null, cloud);
-    }
+  if (type === CLIENT_TYPES.compute) {
+    client = cloud.compute.createClient(config.compute[0]);
+  }
+  return callback(null, client);
+};
+
+exports.outputImages = function(err, images) {
+  if (err) {
+    console.log(err);
+    process.exit(1);
+  }
+  var tbl = new table({
+    head: ['ID', 'NAME', 'CREATED', 'UPDATED', 'STATUS', 'PROGRESS'],
+    colWidths: [40, 50, 22, 22, 10, 10]
   });
+  for (var iter in images) {
+    var img = images[iter];
+    var data = [
+      img.id,
+      img.name,
+      dateFormat(img.created, 'yyyy-mm-dd h:MM:ss') || 'N/A',
+      dateFormat(img.update, 'yyyy-mm-dd h:MM:ss') || 'N/A',
+      img.status || 'N/A',
+      img.progress|| 'N/A'
+    ];
+    tbl.push(data);
+  }
+  console.log(tbl.toString());
 };
 
 module.exports = exports;

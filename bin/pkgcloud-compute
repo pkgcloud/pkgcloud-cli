@@ -5,6 +5,7 @@ program
   .command('flavor-list', 'List flavors')
   .command('image-list', 'List images')
   .command('image-create', 'Create new image')
+  .command('image-destroy', 'Destroy an image')
   .command('server-list', 'List servers')
   .command('server-create', 'Create a server')
   .command('server-destroy', 'Destroy a server')

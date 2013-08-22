@@ -1,12 +1,12 @@
 {
   "name": "pkgcloud-cli",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "CLI for pkgcloud",
   "scripts": {
     "test": "make test"
   },
   "engines": {
-    "node": ">= 0.6.x"
+    "node": ">= 0.8.x"
   },
   "bin": {
     "pkgcloud": "./bin/pkgcloud",
@@ -31,7 +31,7 @@
   "license": "MIT",
   "dependencies": {
     "commander": "~2.0.0",
-    "node-cloud": "git+ssh://git@github.com:rosskukulinski/node-cloud.git",
+    "pkgcloud": "~0.8.7",
     "nconf": "~0.6.7",
     "path": "~0.4.9",
     "cli-table": "~0.2.0",
