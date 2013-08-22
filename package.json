@@ -1,6 +1,6 @@
 {
   "name": "pkgcloud-cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "CLI for pkgcloud",
   "scripts": {
     "test": "make test"
@@ -14,9 +14,13 @@
     "pkgcloud-compute-flavor-list": "./bin/pkgcloud-compute-flavor-list",
     "pkgcloud-compute-image-list": "./bin/pkgcloud-compute-image-list",
     "pkgcloud-compute-image-create": "./bin/pkgcloud-compute-image-create",
+    "pkgcloud-compute-image-destroy": "./bin/pkgcloud-compute-image-destroy",
     "pkgcloud-compute-server-list": "./bin/pkgcloud-compute-server-list",
     "pkgcloud-compute-server-destroy": "./bin/pkgcloud-compute-server-destroy",
-    "pkgcloud-compute-server-create": "./bin/pkgcloud-compute-server-create"
+    "pkgcloud-compute-server-create": "./bin/pkgcloud-compute-server-create",
+    "pkgcloud-database": "./bin/pkgcloud-database",
+    "pkgcloud-storage": "./bin/pkgcloud-storage"
+
   },
   "repository": {
     "type": "git",
