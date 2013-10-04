@@ -1,5 +1,7 @@
 # pkgcloud-cli
 
+![pkgcloud-cli download history](https://nodei.co/npm-dl/pkgcloud-cli.png)
+
 Basic commandline wrapper around the pkgcloud nodejs module.
 
 ```
