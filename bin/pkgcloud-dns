@@ -7,7 +7,7 @@ program
   .command('create-zone', 'Create new DNS Zone')
   .command('delete-zone', 'Destroy DNS Zone')
   .command('list-zone-records', 'List Zone Records')
-  .command('describe-zone-record', 'Describe a Zone Record')
+  .command('get-zone-record', 'Describe a Zone Record')
   .command('create-zone-record', 'Create a Zone Record')
   .command('delete-zone-record', 'Delete a Zone Record')
   .parse(process.argv);
