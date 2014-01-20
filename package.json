@@ -22,7 +22,9 @@
     "pkgcloud-storage": "./bin/pkgcloud-storage",
     "pkgcloud-dns": "./bin/pkgcloud-dns",
     "pkgcloud-dns-list-zones": "./bin/pkgcloud-dns-list-zones",
-    "pkgcloud-dns-get-zone": "./bin/pkgcloud-dns-get-zone"
+    "pkgcloud-dns-get-zone": "./bin/pkgcloud-dns-get-zone",
+    "pkgcloud-dns-create-zone": "./bin/pkgcloud-dns-create-zone",
+    "pkgcloud-dns-delete-zone": "./bin/pkgcloud-dns-delete-zone"
 
   },
   "repository": {
