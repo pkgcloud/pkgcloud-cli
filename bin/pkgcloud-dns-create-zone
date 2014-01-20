@@ -1,0 +1,39 @@
+#!/usr/bin/env node
+var program = require('commander');
+var helpers = require('../helpers');
+var table   = require('cli-table');
+var _       = require('underscore');
+
+program
+  .option('-z, --zoneid <RackspaceZoneID>', 'Rackspace unique Zone id')
+  .parse(process.argv);
+
+var config = program.config;
+if (!config) {
+  config = process.env['HOME']+'/pkgcloud-cli.json';
+}
+
+var print_zone_details = function(zone) {
+  var t;
+  t = new table({
+    head: ['Zone ID', 'Zone Name', 'TTL', "Admin email", 'Date Created'],
+    colsWidths: [50, 50, 15, 100, 100]
+  });
+ 
+  t.push([zone.id, zone.name, zone.ttl, zone.emailAddress, zone.created]);
+
+  console.log(t.toString());
+};
+
+var getZoneDetails = function (err, zone) {
+  if (err) {
+    console.log(err.message);
+  }
+  else {
+    print_zone_details(zone);
+  }
+};
+
+helpers.init(config, helpers.CLIENT_TYPES.dns, function(err, client) {
+  client.getZone(program.zoneid, getZoneDetails);
+});
