@@ -26,7 +26,8 @@
     "pkgcloud-dns-create-zone": "./bin/pkgcloud-dns-create-zone",
     "pkgcloud-dns-delete-zone": "./bin/pkgcloud-dns-delete-zone",
     "pkgcloud-dns-list-zone-records": "./bin/pkgcloud-dns-list-zone-records",
-    "pkgcloud-dns-create-zone-record": "./bin/pkgcloud-dns-create-zone-record"
+    "pkgcloud-dns-create-zone-record": "./bin/pkgcloud-dns-create-zone-record",
+    "pkgcloud-dns-delete-zone-record": "./bin/pkgcloud-dns-delete-zone-record"
 
   },
   "repository": {
