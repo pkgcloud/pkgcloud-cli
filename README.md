@@ -42,6 +42,8 @@ However, the intent is to expand pkgcloud-cli to use a new library, multi-pkgclo
   "storage": [
   ],
   "database": [
+  ],
+  "dns": [
   ]
 }
 
@@ -59,6 +61,7 @@ use pkgcloud-cli
     compute                Compute commands
     storage                Storage commands
     database               Database commands
+    dns                    DNS commands
     help [cmd]             display help for [cmd]
 
   Options:

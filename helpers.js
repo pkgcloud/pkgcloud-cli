@@ -8,9 +8,10 @@ var exports = {};
 var client;
 
 var CLIENT_TYPES = {
-  'compute': 'COMPUTE',
-  'database': 'DATABASE',
-  'storage': 'STORAGE'
+  'compute'  : 'COMPUTE',
+  'database' : 'DATABASE',
+  'storage'  : 'STORAGE',
+  'dns'      : 'DNS'
 };
 
 exports.CLIENT_TYPES = CLIENT_TYPES;
@@ -39,6 +40,9 @@ exports.init = function(config, type, callback) {
   config = loadConfig(config);
   if (type === CLIENT_TYPES.compute) {
     client = cloud.compute.createClient(config.compute[0]);
+  }
+  else if (type === CLIENT_TYPES.dns) {
+     client = cloud.dns.createClient(config.dns[0]);
   }
   return callback(null, client);
 };

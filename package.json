@@ -19,7 +19,15 @@
     "pkgcloud-compute-server-destroy": "./bin/pkgcloud-compute-server-destroy",
     "pkgcloud-compute-server-create": "./bin/pkgcloud-compute-server-create",
     "pkgcloud-database": "./bin/pkgcloud-database",
-    "pkgcloud-storage": "./bin/pkgcloud-storage"
+    "pkgcloud-storage": "./bin/pkgcloud-storage",
+    "pkgcloud-dns": "./bin/pkgcloud-dns",
+    "pkgcloud-dns-list-zones": "./bin/pkgcloud-dns-list-zones",
+    "pkgcloud-dns-get-zone": "./bin/pkgcloud-dns-get-zone",
+    "pkgcloud-dns-create-zone": "./bin/pkgcloud-dns-create-zone",
+    "pkgcloud-dns-delete-zone": "./bin/pkgcloud-dns-delete-zone",
+    "pkgcloud-dns-list-zone-records": "./bin/pkgcloud-dns-list-zone-records",
+    "pkgcloud-dns-create-zone-record": "./bin/pkgcloud-dns-create-zone-record",
+    "pkgcloud-dns-delete-zone-record": "./bin/pkgcloud-dns-delete-zone-record"
 
   },
   "repository": {
@@ -39,6 +47,7 @@
     "nconf": "~0.6.7",
     "path": "~0.4.9",
     "cli-table": "~0.2.0",
-    "dateformat": "~1.0.6-1.2.3"
+    "dateformat": "~1.0.6-1.2.3",
+    "underscore": "~1.5.2"
   }
 }

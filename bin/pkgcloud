@@ -7,4 +7,5 @@ program
   .command('compute', 'Compute commands')
   .command('storage', 'Storage commands')
   .command('database', 'Database commands')
+  .command('dns', 'DNS commands')
   .parse(process.argv);
