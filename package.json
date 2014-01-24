@@ -1,6 +1,6 @@
 {
   "name": "pkgcloud-cli",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "CLI for pkgcloud",
   "scripts": {
     "test": "make test"
@@ -43,7 +43,7 @@
   "license": "MIT",
   "dependencies": {
     "commander": "~2.0.0",
-    "pkgcloud": "~0.8.7",
+    "pkgcloud": "~0.8.17",
     "nconf": "~0.6.7",
     "path": "~0.4.9",
     "cli-table": "~0.2.0",
