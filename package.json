@@ -1,6 +1,6 @@
 {
   "name": "pkgcloud-cli",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "CLI for pkgcloud",
   "scripts": {
     "test": "make test"
@@ -28,7 +28,6 @@
     "pkgcloud-dns-list-zone-records": "./bin/pkgcloud-dns-list-zone-records",
     "pkgcloud-dns-create-zone-record": "./bin/pkgcloud-dns-create-zone-record",
     "pkgcloud-dns-delete-zone-record": "./bin/pkgcloud-dns-delete-zone-record"
-
   },
   "repository": {
     "type": "git",
@@ -48,6 +47,7 @@
     "path": "~0.4.9",
     "cli-table": "~0.2.0",
     "dateformat": "~1.0.6-1.2.3",
-    "underscore": "~1.5.2"
+    "underscore": "~1.5.2",
+    "pkginfo": "~0.3.0"
   }
 }

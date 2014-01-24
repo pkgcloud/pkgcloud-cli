@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 
 var program = require('commander');
+var pkginfo = require('pkginfo')(module, 'version');
 
 program
-  .version('0.0.2')
+  .version(module.exports.version)
   .command('compute', 'Compute commands')
   .command('storage', 'Storage commands')
   .command('database', 'Database commands')
