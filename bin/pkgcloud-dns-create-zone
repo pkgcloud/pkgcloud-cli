@@ -5,9 +5,9 @@ var table   = require('cli-table');
 var _       = require('underscore');
 
 program
-  .option('-n, --name <Zone Name>', 'desired Zone name (i.e. domain.com)')
-  .option('-e, --email <admin email>', 'admin email (i.e. admin@domain.com)')
-  .option('-t, --ttl <timtolive>', 'number of seconds for dns request to live')
+  .option('-n, --name <Zone Name>', 'Desired Zone name (i.e. domain.com)')
+  .option('-e, --email <admin email>', 'Admin email (i.e. admin@domain.com)')
+  .option('-t, --ttl <timtolive>', 'Number of seconds for dns request to live')
   .option('-c, --comment <message>', 'Small notes or message for this Zone')
   .parse(process.argv);
 
