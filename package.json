@@ -1,6 +1,6 @@
 {
   "name": "pkgcloud-cli",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "CLI for pkgcloud",
   "scripts": {
     "test": "make test"
@@ -31,7 +31,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:rosskukulinski/pkgcloud-cli.git"
+    "url": "http://github.com/pkgcloud/pkgcloud-cli.git"
   },
   "keywords": [
     "pkgcloud",
