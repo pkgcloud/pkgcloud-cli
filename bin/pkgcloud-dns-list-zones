@@ -17,7 +17,7 @@ var print_dns_list = function( items) {
   var t;
   t = new table({
     head: ['Zone ID', 'Zone Name'],
-    colsWidths: [100, 100]
+    colWidths: [20, 20]
   });
   _.each(items, function(zone) {
     t.push([zone.id, zone.name]);
