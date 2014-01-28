@@ -44,6 +44,9 @@ exports.init = function(config, type, callback) {
   else if (type === CLIENT_TYPES.dns) {
      client = cloud.dns.createClient(config.dns[0]);
   }
+  if (type === CLIENT_TYPES.storage) {
+    client = cloud.storage.createClient(config.storage[0]);
+  }
   return callback(null, client);
 };
 
