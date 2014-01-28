@@ -1,6 +1,6 @@
 {
   "name": "pkgcloud-cli",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "CLI for pkgcloud",
   "scripts": {
     "test": "make test"
@@ -20,6 +20,15 @@
     "pkgcloud-compute-server-create": "./bin/pkgcloud-compute-server-create",
     "pkgcloud-database": "./bin/pkgcloud-database",
     "pkgcloud-storage": "./bin/pkgcloud-storage",
+    "pkgcloud-storage": "./bin/pkgcloud-storage-create-container",
+    "pkgcloud-storage": "./bin/pkgcloud-storage-destroy-container",
+    "pkgcloud-storage": "./bin/pkgcloud-storage-download",
+    "pkgcloud-storage": "./bin/pkgcloud-storage-get-container",
+    "pkgcloud-storage": "./bin/pkgcloud-storage-get-containers",
+    "pkgcloud-storage": "./bin/pkgcloud-storage-get-file",
+    "pkgcloud-storage": "./bin/pkgcloud-storage-get-files",
+    "pkgcloud-storage": "./bin/pkgcloud-storage-remove-file",
+    "pkgcloud-storage": "./bin/pkgcloud-storage-upload",
     "pkgcloud-dns": "./bin/pkgcloud-dns",
     "pkgcloud-dns-list-zones": "./bin/pkgcloud-dns-list-zones",
     "pkgcloud-dns-get-zone": "./bin/pkgcloud-dns-get-zone",
