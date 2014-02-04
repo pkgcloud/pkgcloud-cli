@@ -2,7 +2,6 @@
 var program = require('commander');
 var helpers = require('../helpers');
 var table = require('cli-table');
-var dateFormat = require('dateFormat');
 
 program
   .option('-c, --config <path>', 'set config path [./cloud.json]')
