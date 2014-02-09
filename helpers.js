@@ -1,7 +1,7 @@
 var cloud = require('pkgcloud');
 var fs = require('fs');
 var table = require('cli-table');
-var dateFormat = require('dateFormat');
+var dateformat = require('dateformat');
 
 var exports = {};
 
@@ -64,8 +64,8 @@ exports.outputImages = function(err, images) {
     var data = [
       img.id,
       img.name,
-      dateFormat(img.created, 'yyyy-mm-dd h:MM:ss') || 'N/A',
-      dateFormat(img.update, 'yyyy-mm-dd h:MM:ss') || 'N/A',
+      dateformat(img.created, 'yyyy-mm-dd h:MM:ss') || 'N/A',
+      dateformat(img.update, 'yyyy-mm-dd h:MM:ss') || 'N/A',
       img.status || 'N/A',
       img.progress|| 'N/A'
     ];
