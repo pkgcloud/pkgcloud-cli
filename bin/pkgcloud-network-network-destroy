@@ -1,0 +1,26 @@
+#!/usr/bin/env node
+var program = require('commander');
+var helpers = require('../helpers');
+
+program
+  .option('-c, --networkName <network Name>', 'Name of the network to delete')
+  .parse(process.argv);
+
+var config = program.config;
+if (!config) {
+  config = process.env['HOME']+'/pkgcloud-cli.json';
+}
+
+
+var getNetworkResult = function (err) {
+  if (err) {
+    console.log(err.message);
+  }
+  else {
+    console.log('The network was successfully deleted.');
+  }
+};
+
+helpers.init(config, helpers.CLIENT_TYPES.network, function(err, client) {
+  client.destroyNetwork(program.networkName, getNetworkResult);
+});

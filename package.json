@@ -36,7 +36,11 @@
     "pkgcloud-dns-delete-zone": "./bin/pkgcloud-dns-delete-zone",
     "pkgcloud-dns-list-zone-records": "./bin/pkgcloud-dns-list-zone-records",
     "pkgcloud-dns-create-zone-record": "./bin/pkgcloud-dns-create-zone-record",
-    "pkgcloud-dns-delete-zone-record": "./bin/pkgcloud-dns-delete-zone-record"
+    "pkgcloud-dns-delete-zone-record": "./bin/pkgcloud-dns-delete-zone-record",
+    "pkgcloud-network": "./bin/pkgcloud-network",
+    "pkgcloud-network-network-list": "./bin/pkgcloud-network-network-list",
+    "pkgcloud-network-network-create": "./bin/pkgcloud-network-network-create",
+    "pkgcloud-network-network-destroy": "./bin/pkgcloud-network-network-destroy"
   },
   "repository": {
     "type": "git",

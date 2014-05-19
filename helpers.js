@@ -11,7 +11,8 @@ var CLIENT_TYPES = {
   'compute'  : 'COMPUTE',
   'database' : 'DATABASE',
   'storage'  : 'STORAGE',
-  'dns'      : 'DNS'
+  'dns'      : 'DNS',
+  'network'  : 'NETWORK'
 };
 
 exports.CLIENT_TYPES = CLIENT_TYPES;
@@ -43,6 +44,9 @@ exports.init = function(config, type, callback) {
   }
   else if (type === CLIENT_TYPES.dns) {
      client = cloud.dns.createClient(config.dns[0]);
+  }
+  else if (type === CLIENT_TYPES.network) {
+    client = cloud.storage.createClient(config.network[0]);
   }
   if (type === CLIENT_TYPES.storage) {
     client = cloud.storage.createClient(config.storage[0]);
