@@ -3,7 +3,7 @@ var program = require('commander');
 var helpers = require('../helpers');
 
 program
-  .option('-c, --networkName <network Name>', 'Name of the network to delete')
+  .option('-n, --networkId <network Id>', 'Id of the network to delete')
   .parse(process.argv);
 
 var config = program.config;
@@ -11,8 +11,7 @@ if (!config) {
   config = process.env['HOME']+'/pkgcloud-cli.json';
 }
 
-
-var getNetworkResult = function (err) {
+var deleteNetworkResult = function (err) {
   if (err) {
     console.log(err.message);
   }
@@ -22,5 +21,5 @@ var getNetworkResult = function (err) {
 };
 
 helpers.init(config, helpers.CLIENT_TYPES.network, function(err, client) {
-  client.destroyNetwork(program.networkName, getNetworkResult);
+  client.destroyNetwork(program.networkId, deleteNetworkResult);
 });
