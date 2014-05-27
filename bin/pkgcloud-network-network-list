@@ -18,17 +18,17 @@ var outputNetworks = function(err, networks) {
     process.exit(1);
   }
   var tbl = new table({
-    head: ['ID', 'NAME', 'Status', 'Admin State Up', 'Tenant ID', 'Shared'],
-    colWidths: [15, 30, 10, 10, 10]
+    head: ['ID', 'Tenant ID', 'NAME', 'Status', 'Up', 'Shared'],
+    colWidths: [40, 20, 30, 10, 10, 10]
   });
   for (var iter in networks) {
     var ntwrk = networks[iter];
     var data = [
       ntwrk.id,
+      ntwrk.tenantId || 'N/A',
       ntwrk.name || 'N/A',
       ntwrk.status || 'N/A',
       ntwrk.adminStateUp || 'N/A',
-      ntwrk.tenantId || 'N/A',
       ntwrk.shared || 'N/A'];
     tbl.push(data);
   }
@@ -36,5 +36,6 @@ var outputNetworks = function(err, networks) {
 };
 
 helpers.init(config, helpers.CLIENT_TYPES.network, function(err, cloud) {
+  debugger;
   cloud.getNetworks(outputNetworks);
 });

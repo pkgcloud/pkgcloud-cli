@@ -46,7 +46,7 @@ exports.init = function(config, type, callback) {
      client = cloud.dns.createClient(config.dns[0]);
   }
   else if (type === CLIENT_TYPES.network) {
-    client = cloud.storage.createClient(config.network[0]);
+    client = cloud.network.createClient(config.network[0]);
   }
   if (type === CLIENT_TYPES.storage) {
     client = cloud.storage.createClient(config.storage[0]);
