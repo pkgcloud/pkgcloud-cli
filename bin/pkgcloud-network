@@ -3,7 +3,6 @@ var program = require('commander');
 
 program
   .command('network-list', 'List networks')
-  .command('get-network', 'Get a network')
   .command('network-create', 'Create new network')
   .command('network-destroy', 'Destroy a network')
   .parse(process.argv);
