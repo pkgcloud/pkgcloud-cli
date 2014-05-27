@@ -33,11 +33,19 @@ var loadConfig = function (file) {
   }
 };
 
+var assertSectionInConfigFile = function (config, sectionName) {
+ if (!config.sectionName) {
+  console.error("The pkgcloud-cli.json section is missing a ["+ sectionName + "] section");
+  process.exit(0);
+ }
+};
+
 exports.init = function(config, type, callback) {
   if (!config) {
     return callback(new Error('No config file specified.  See -h for assistance'));
   }
   config = loadConfig(config);
+  assertSectionInConfigFile(config, type);
   if (type === CLIENT_TYPES.compute) {
     client = cloud.compute.createClient(config.compute[0]);
   }
