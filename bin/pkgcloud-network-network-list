@@ -17,19 +17,10 @@ var outputNetworks = function(err, networks) {
     console.log(err);
     process.exit(1);
   }
-  var tbl = new table({
-    head: ['ID', 'Tenant ID', 'NAME', 'Status', 'Up', 'Shared'],
-    colWidths: [40, 20, 30, 10, 10, 10]
-  });
+  var tbl = new table(helpers.getNetworkTableDefinition());
   for (var iter in networks) {
     var ntwrk = networks[iter];
-    var data = [
-      ntwrk.id,
-      ntwrk.tenantId || 'N/A',
-      ntwrk.name || 'N/A',
-      ntwrk.status || 'N/A',
-      ntwrk.adminStateUp || 'N/A',
-      ntwrk.shared || 'N/A'];
+    var data = helpers.getNetworkRow(ntwrk);
     tbl.push(data);
   }
   console.log(tbl.toString());

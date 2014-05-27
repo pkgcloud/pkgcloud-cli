@@ -78,4 +78,21 @@ exports.outputImages = function(err, images) {
   console.log(tbl.toString());
 };
 
+exports.getNetworkTableDefinition = function(network){
+ return {
+    head: ['ID', 'Tenant ID', 'NAME', 'Status', 'Up', 'Shared'],
+    colWidths: [40, 20, 30, 10, 10, 10]
+  };
+}
+
+exports.getNetworkRow = function(network){
+  return  [
+      network.id,
+      network.tenantId || 'N/A',
+      network.name || 'N/A',
+      network.status || 'N/A',
+      network.adminStateUp || 'N/A',
+      network.shared || 'N/A'];
+}
+
 module.exports = exports;
