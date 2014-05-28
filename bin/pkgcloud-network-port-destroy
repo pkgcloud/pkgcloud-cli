@@ -1,0 +1,25 @@
+#!/usr/bin/env node
+var program = require('commander');
+var helpers = require('../helpers');
+
+program
+  .option('-p, --portId <port Id>', 'Id of the port to delete')
+  .parse(process.argv);
+
+var config = program.config;
+if (!config) {
+  config = process.env['HOME']+'/pkgcloud-cli.json';
+}
+
+var deletePortResult = function (err) {
+  if (err) {
+    console.log(err.message);
+  }
+  else {
+    console.log('The port was successfully deleted.');
+  }
+};
+
+helpers.init(config, helpers.CLIENT_TYPES.network, function(err, client) {
+  client.destroyPort(program.portId, deletePortResult);
+});
