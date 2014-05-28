@@ -23,7 +23,7 @@ var deserializeFixedIPs = function (arrayObj){
   var strArray = '',
   index = 0;
   for(index=0; index< arrayObj.length ; index++){
-    strArray += "Subnet ID : " + arrayObj[index].subnet_id + "\n"+"IP Address : " + arrayObj[index].ip_address +   "\n";
+    strArray += "Subnet ID : " + arrayObj[index].subnet_id + "\n"+"IP Address: " + arrayObj[index].ip_address +   "\n";
   }
   return strArray;
 };
