@@ -34,7 +34,7 @@ var loadConfig = function (file) {
 };
 
 var assertSectionInConfigFile = function (config, sectionName) {
- if (!config.sectionName) {
+ if (!config[sectionName]) {
   console.error("The pkgcloud-cli.json section is missing a ["+ sectionName + "] section");
   process.exit(0);
  }
