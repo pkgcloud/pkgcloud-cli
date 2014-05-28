@@ -78,14 +78,14 @@ exports.outputImages = function(err, images) {
   console.log(tbl.toString());
 };
 
-exports.getNetworkTableDefinition = function(network){
+exports.getNetworkTableDefinition = function() {
  return {
     head: ['ID', 'Tenant ID', 'NAME', 'Status', 'Up', 'Shared'],
-    colWidths: [40, 20, 30, 10, 10, 10]
+    colWidths: [40, 40, 30, 10, 10, 10]
   };
-}
+};
 
-exports.getNetworkRow = function(network){
+exports.getNetworkRow = function(network) {
   return  [
       network.id,
       network.tenantId || 'N/A',
@@ -93,6 +93,6 @@ exports.getNetworkRow = function(network){
       network.status || 'N/A',
       network.adminStateUp || 'N/A',
       network.shared || 'N/A'];
-}
+};
 
 module.exports = exports;

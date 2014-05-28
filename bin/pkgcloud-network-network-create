@@ -5,7 +5,7 @@ var table = require('cli-table');
 
 program
   .option('-n, --name <network Name>', 'Desired network name')
-  .option('-s, --shared <shared>', 'True (default) if the network is public, false otherwise')
+  .option('-s, --shared <shared>', 'False (default) if the network is hidden, True if public')
   .option('-t, --tenantId <tenantId>', 'The tenant Id')
   .parse(process.argv);
 

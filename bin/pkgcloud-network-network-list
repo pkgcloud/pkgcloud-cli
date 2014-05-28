@@ -27,6 +27,5 @@ var outputNetworks = function(err, networks) {
 };
 
 helpers.init(config, helpers.CLIENT_TYPES.network, function(err, cloud) {
-  debugger;
   cloud.getNetworks(outputNetworks);
 });
