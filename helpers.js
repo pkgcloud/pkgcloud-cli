@@ -3,7 +3,6 @@ var fs = require('fs');
 var table = require('cli-table');
 var dateformat = require('dateformat');
 var prettyjson = require('prettyjson');
-var colors = require('colors');
 
 var exports = {};
 
@@ -21,7 +20,6 @@ exports.CLIENT_TYPES = CLIENT_TYPES;
 var loadConfig = function (file) {
   try {
     var configFile = file;
-    var stats = fs.statSync(configFile);
     var config = JSON.parse(fs.readFileSync(configFile).toString());
 
     return config || {};

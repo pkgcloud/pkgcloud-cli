@@ -50,15 +50,14 @@
   "author": "Ross Kukulinski <rossk@labs.asti-usa.com>",
   "license": "MIT",
   "dependencies": {
-    "commander": "~2.0.0",
+    "commander": "~2.2.0",
     "pkgcloud": "~0.8.17",
     "nconf": "~0.6.7",
     "path": "~0.4.9",
-    "cli-table": "~0.2.0",
+    "cli-table": "~0.3.0",
     "dateformat": "~1.0.6-1.2.3",
-    "underscore": "~1.5.2",
+    "underscore": "~1.6.0",
     "pkginfo": "~0.3.0",
-    "prettyjson": "~1.0.0",
-    "colors": "~0.6.2"
+    "prettyjson": "~1.0.0"
   }
 }
