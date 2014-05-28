@@ -2,6 +2,8 @@ var cloud = require('pkgcloud');
 var fs = require('fs');
 var table = require('cli-table');
 var dateformat = require('dateformat');
+var prettyjson = require('prettyjson');
+var colors = require('colors');
 
 var exports = {};
 
@@ -33,6 +35,15 @@ var loadConfig = function (file) {
   }
 };
 
+var globalErrorHandler = function(message, data){
+  var prettyJson = prettyjson.render(data);
+  console.log("\n");
+  console.log(message.red);
+  console.log(prettyJson);
+  console.log("\n");
+  process.exit(1);
+};
+
 exports.init = function(config, type, callback) {
   if (!config) {
     return callback(new Error('No config file specified.  See -h for assistance'));
@@ -47,6 +58,11 @@ exports.init = function(config, type, callback) {
   if (type === CLIENT_TYPES.storage) {
     client = cloud.storage.createClient(config.storage[0]);
   }
+
+  if(client) {
+    client.on("log::error", globalErrorHandler);
+  }
+
   return callback(null, client);
 };
 

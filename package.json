@@ -57,6 +57,8 @@
     "cli-table": "~0.2.0",
     "dateformat": "~1.0.6-1.2.3",
     "underscore": "~1.5.2",
-    "pkginfo": "~0.3.0"
+    "pkginfo": "~0.3.0",
+    "prettyjson": "~1.0.0",
+    "colors": "~0.6.2"
   }
 }
