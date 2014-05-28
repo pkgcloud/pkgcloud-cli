@@ -45,7 +45,7 @@ exports.init = function(config, type, callback) {
     return callback(new Error('No config file specified.  See -h for assistance'));
   }
   config = loadConfig(config);
-  assertSectionInConfigFile(config, type);
+  assertSectionInConfigFile(config, type.toLowerCase());
   if (type === CLIENT_TYPES.compute) {
     client = cloud.compute.createClient(config.compute[0]);
   }
