@@ -1,6 +1,6 @@
 {
   "name": "pkgcloud-cli",
-  "version": "0.2.6",
+  "version": "0.3.0",
   "description": "CLI for pkgcloud",
   "scripts": {
     "test": "make test"
@@ -58,9 +58,10 @@
     "pkgcloud": "~0.9.5",
     "nconf": "~0.6.7",
     "path": "~0.4.9",
-    "cli-table": "~0.2.0",
+    "cli-table": "~0.3.0",
     "dateformat": "~1.0.6-1.2.3",
-    "underscore": "~1.5.2",
-    "pkginfo": "~0.3.0"
+    "underscore": "~1.6.0",
+    "pkginfo": "~0.3.0",
+    "prettyjson": "~1.0.0"
   }
 }

@@ -2,6 +2,7 @@ var cloud = require('pkgcloud');
 var fs = require('fs');
 var table = require('cli-table');
 var dateformat = require('dateformat');
+var prettyjson = require('prettyjson');
 
 var exports = {};
 
@@ -20,7 +21,6 @@ exports.CLIENT_TYPES = CLIENT_TYPES;
 var loadConfig = function (file) {
   try {
     var configFile = file;
-    var stats = fs.statSync(configFile);
     var config = JSON.parse(fs.readFileSync(configFile).toString());
 
     return config || {};
@@ -34,11 +34,29 @@ var loadConfig = function (file) {
   }
 };
 
+var assertSectionInConfigFile = function (config, sectionName) {
+ if (!config[sectionName]) {
+  console.error("The pkgcloud-cli.json section is missing a ["+
+                sectionName + "] section");
+  process.exit(0);
+ }
+};
+
+var globalErrorHandler = function(message, data){
+  var prettyJson = prettyjson.render(data);
+  console.log("\n");
+  console.log(message.red);
+  console.log(prettyJson);
+  console.log("\n");
+  process.exit(1);
+};
+
 exports.init = function(config, type, callback) {
   if (!config) {
     return callback(new Error('No config file specified.  See -h for assistance'));
   }
   config = loadConfig(config);
+  assertSectionInConfigFile(config, type.toLowerCase());
   if (type === CLIENT_TYPES.compute) {
     client = cloud.compute.createClient(config.compute[0]);
   }
@@ -51,6 +69,11 @@ exports.init = function(config, type, callback) {
   if (type === CLIENT_TYPES.storage) {
     client = cloud.storage.createClient(config.storage[0]);
   }
+
+  if(client) {
+    client.on("log::error", globalErrorHandler);
+  }
+
   return callback(null, client);
 };
 
