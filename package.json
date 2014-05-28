@@ -1,6 +1,6 @@
 {
   "name": "pkgcloud-cli",
-  "version": "0.2.6",
+  "version": "0.3.0",
   "description": "CLI for pkgcloud",
   "scripts": {
     "test": "make test"
