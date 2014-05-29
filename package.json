@@ -40,7 +40,10 @@
     "pkgcloud-network": "./bin/pkgcloud-network",
     "pkgcloud-network-network-list": "./bin/pkgcloud-network-network-list",
     "pkgcloud-network-network-create": "./bin/pkgcloud-network-network-create",
-    "pkgcloud-network-network-destroy": "./bin/pkgcloud-network-network-destroy"
+    "pkgcloud-network-network-destroy": "./bin/pkgcloud-network-network-destroy",
+    "pkgcloud-network-port-list": "./bin/pkgcloud-network-port-list",
+    "pkgcloud-network-port-create": "./bin/pkgcloud-network-port-create",
+    "pkgcloud-network-port-destroy": "./bin/pkgcloud-network-port-destroy"
   },
   "repository": {
     "type": "git",
