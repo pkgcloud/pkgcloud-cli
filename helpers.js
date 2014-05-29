@@ -12,7 +12,8 @@ var CLIENT_TYPES = {
   'compute'  : 'COMPUTE',
   'database' : 'DATABASE',
   'storage'  : 'STORAGE',
-  'dns'      : 'DNS'
+  'dns'      : 'DNS',
+  'network'  : 'NETWORK'
 };
 
 exports.CLIENT_TYPES = CLIENT_TYPES;
@@ -62,6 +63,9 @@ exports.init = function(config, type, callback) {
   else if (type === CLIENT_TYPES.dns) {
      client = cloud.dns.createClient(config.dns[0]);
   }
+  else if (type === CLIENT_TYPES.network) {
+    client = cloud.network.createClient(config.network[0]);
+  }
   if (type === CLIENT_TYPES.storage) {
     client = cloud.storage.createClient(config.storage[0]);
   }
@@ -95,6 +99,23 @@ exports.outputImages = function(err, images) {
     tbl.push(data);
   }
   console.log(tbl.toString());
+};
+
+exports.getNetworkTableDefinition = function() {
+ return {
+    head: ['ID', 'Tenant ID', 'NAME', 'Status', 'Up', 'Shared'],
+    colWidths: [40, 40, 30, 10, 10, 10]
+  };
+};
+
+exports.getNetworkRow = function(network) {
+  return  [
+      network.id,
+      network.tenantId || 'N/A',
+      network.name || 'N/A',
+      network.status || 'N/A',
+      network.adminStateUp || 'N/A',
+      network.shared || 'N/A'];
 };
 
 module.exports = exports;

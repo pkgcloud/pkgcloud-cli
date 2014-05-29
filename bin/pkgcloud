@@ -9,4 +9,5 @@ program
   .command('storage', 'Storage commands')
   .command('database', 'Database commands')
   .command('dns', 'DNS commands')
+  .command('network', 'Network commands')
   .parse(process.argv);
