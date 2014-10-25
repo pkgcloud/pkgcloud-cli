@@ -9,7 +9,7 @@ program
 
 var config = program.config;
 if (!config) {
-  config = process.env['HOME']+'/pkgcloud-cli.json';
+  config = process.env.HOME+'/pkgcloud-cli.json';
 }
 
 var outputFlavors = function(err, flavors) {
@@ -19,7 +19,7 @@ var outputFlavors = function(err, flavors) {
   }
   var tbl = new table({
     head: ['ID', 'NAME', 'RAM', 'DISK', 'VCPUS'],
-    colWidths: [15, 30, 10, 10, 10]
+    colWidths: [20, 30, 10, 10, 10]
   });
   for (var iter in flavors) {
     var flv = flavors[iter];
