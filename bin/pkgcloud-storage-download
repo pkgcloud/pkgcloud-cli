@@ -1,9 +1,7 @@
 #!/usr/bin/env node
 var program = require('commander');
 var helpers = require('../helpers');
-var table   = require('cli-table');
 var path    = require('path');
-var _       = require('underscore');
 
 program
   .option('-c, --containerName <Container Name>', 'Unique Container Name')
@@ -12,9 +10,8 @@ program
   .parse(process.argv);
 
 var config = program.config;
-var containerObj;
 if (!config) {
-  config = process.env['HOME']+'/pkgcloud-cli.json';
+  config = process.env.HOME+'/pkgcloud-cli.json';
 }
 
 
@@ -29,7 +26,7 @@ var getFileDetails = function (err, file) {
 helpers.init(config, helpers.CLIENT_TYPES.storage, function(err, client) {
   if (!program.containerName) {
     console.log('You must specify a container name');
-    process.exit(1)
+    process.exit(1);
   }
   if (!program.file) {
     console.log('You must specify a file to download');
