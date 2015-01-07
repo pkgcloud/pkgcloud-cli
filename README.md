@@ -57,7 +57,7 @@ use pkgcloud-cli
   Usage: pkgcloud [options] [command]
 
   Commands:
-
+    init                   Initialize pkgcloud-cli config file
     compute                Compute commands
     storage                Storage commands
     database               Database commands
