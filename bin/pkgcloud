@@ -5,6 +5,7 @@ var pkginfo = require('pkginfo')(module, 'version');
 
 program
   .version(module.exports.version)
+  .command('init', 'Initialize pkgcloud-cli config file')
   .command('compute', 'Compute commands')
   .command('storage', 'Storage commands')
   .command('database', 'Database commands')

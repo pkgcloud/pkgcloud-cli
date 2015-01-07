@@ -1,6 +1,8 @@
 var cloud = require('pkgcloud');
 var fs = require('fs');
+var osenv = require('osenv');
 var table = require('cli-table');
+var path = require('path');
 var dateformat = require('dateformat');
 var prettyjson = require('prettyjson');
 
@@ -116,6 +118,39 @@ exports.getNetworkRow = function(network) {
       network.status || 'N/A',
       network.adminStateUp || 'N/A',
       network.shared || 'N/A'];
+};
+
+exports.writeBlankInit = function(configPath) {
+  configPath = configPath || path.join(osenv.home(), 'pkgcloud-cli.json');
+  if (fs.existsSync(configPath)) {
+    console.log('Warning:', configPath, 'file already exists. Not over-writing');
+  }
+  else {
+    fs.writeFile(configPath, JSON.stringify(blankInit, null, '  '), function (err) {
+        if (err) throw err;
+        console.log('Example config.json file has been written to', configPath);
+    });
+  }
+};
+
+var blankInit = {
+  compute: [
+    {
+      authUrl: "https://identity.api.rackspacecloud.com",
+      region: "DFW",
+      provider: "rackspace",
+      username: "ABCD",
+      apiKey: "1234"
+    }
+  ],
+  storage: [
+  ],
+  database: [
+  ],
+  dns: [
+  ],
+  network: [
+  ]
 };
 
 module.exports = exports;

@@ -10,6 +10,7 @@
   },
   "bin": {
     "pkgcloud": "./bin/pkgcloud",
+    "pkgcloud-init": "./bin/pkgcloud-init",
     "pkgcloud-compute": "./bin/pkgcloud-compute",
     "pkgcloud-compute-flavor-list": "./bin/pkgcloud-compute-flavor-list",
     "pkgcloud-compute-image-list": "./bin/pkgcloud-compute-image-list",
@@ -58,6 +59,7 @@
     "commander": "~2.0.0",
     "dateformat": "^1.0.11",
     "nconf": "~0.6.7",
+    "osenv": "^0.1.0",
     "path": "~0.4.9",
     "pkgcloud": "^1.0.3",
     "pkginfo": "~0.3.0",
