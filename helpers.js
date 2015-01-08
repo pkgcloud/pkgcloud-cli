@@ -11,11 +11,12 @@ var exports = {};
 var client;
 
 var CLIENT_TYPES = {
-  'compute'  : 'COMPUTE',
-  'database' : 'DATABASE',
-  'storage'  : 'STORAGE',
-  'dns'      : 'DNS',
-  'network'  : 'NETWORK'
+  'compute'       : 'COMPUTE',
+  'database'      : 'DATABASE',
+  'storage'       : 'STORAGE',
+  'dns'           : 'DNS',
+  'network'       : 'NETWORK',
+  'orchestration' : 'ORCHESTRATION'
 };
 
 exports.CLIENT_TYPES = CLIENT_TYPES;
@@ -71,7 +72,9 @@ exports.init = function(config, type, callback) {
   if (type === CLIENT_TYPES.storage) {
     client = cloud.storage.createClient(config.storage[0]);
   }
-
+  if (type === CLIENT_TYPES.orchestration) {
+    client = cloud.storage.createClient(config.heat[0]);
+  }
   if(client) {
     client.on("log::error", globalErrorHandler);
   }

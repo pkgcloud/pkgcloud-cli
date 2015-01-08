@@ -1,0 +1,12 @@
+#!/usr/bin/env node
+var program = require('commander');
+
+program
+  .command('list-stacks', 'List stacks')
+  .command('get-stack', 'Get stack')
+  .command('create-stack', 'Create stack')
+  .command('update-stack', 'Update stack')
+  .command('delete-stack', 'Delete stack')
+  .command('get-template', 'Get template')
+  .command('validate-template', 'Validate template')
+  .parse(process.argv);
