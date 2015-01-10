@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var program = require('commander');
+var program = require('../../commander');
 var pkginfo = require('pkginfo')(module, 'version');
 
 program

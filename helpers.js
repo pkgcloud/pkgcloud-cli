@@ -73,7 +73,7 @@ exports.init = function(config, type, callback) {
     client = cloud.storage.createClient(config.storage[0]);
   }
   if (type === CLIENT_TYPES.orchestration) {
-    client = cloud.storage.createClient(config.heat[0]);
+    client = cloud.orchestration.createClient(config.orchestration[0]);
   }
   if(client) {
     client.on("log::error", globalErrorHandler);
