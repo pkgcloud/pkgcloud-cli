@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-var program = require('../../../commander');
+var program = require('commander');
 var helpers = require('../../../helpers');
 var table   = require('cli-table');
 var _       = require('underscore');
