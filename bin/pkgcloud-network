@@ -1,8 +1,0 @@
-#!/usr/bin/env node
-var program = require('commander');
-
-program
-  .command('network-list', 'List networks')
-  .command('network-create', 'Create new network')
-  .command('network-destroy', 'Destroy a network')
-  .parse(process.argv);

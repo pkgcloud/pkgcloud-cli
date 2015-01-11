@@ -1,7 +1,8 @@
 
 /**
- * Modified version to allow for directory structure
+ * Modified version to use directory structure instead of dashes for subcommands
  * Original by:
+ * https://github.com/tj/commander.js/
  * (The MIT License)
  * Copyright (c) 2011 TJ Holowaychuk <tj@vision-media.ca>
  */
