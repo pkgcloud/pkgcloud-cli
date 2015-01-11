@@ -1,0 +1,15 @@
+#!/usr/bin/env node
+
+var program = require('../../../commander');
+
+program
+  .command('get-containers', 'Get Storage Containers')
+  .command('create-container', 'Create Storage Container')
+  .command('destroy-container', 'Destroy Storage Container')
+  .command('get-container', 'Get Storage Container')
+  .command('upload', 'Upload file to container')
+  .command('download', 'Download file from container')
+  .command('get-files', 'Get all files in container ')
+  .command('get-file', 'Get file in a container')
+  .command('remove-file', 'Remove file from a container')
+  .parse(process.argv);
