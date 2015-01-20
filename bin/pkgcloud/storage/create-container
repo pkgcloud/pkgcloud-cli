@@ -1,0 +1,31 @@
+#!/usr/bin/env node
+var program = require('commander');
+var helpers = require('../../../helpers');
+var table   = require('cli-table');
+var _       = require('underscore');
+
+program
+  .option('-n, --name <Container Name>', 'Desired Container name')
+  .parse(process.argv);
+
+var config = program.config;
+if (!config) {
+  config = process.env['HOME']+'/pkgcloud-cli.json';
+}
+
+
+var getContainerResult = function (err) {
+  if (err) {
+    console.log(err.message);
+  }
+  else {
+    console.log('The container was successfully created.')
+  }
+};
+
+helpers.init(config, helpers.CLIENT_TYPES.storage, function(err, client) {
+  det = {
+    name: program.name,
+  };
+  client.createContainer(det, getContainerResult);
+});

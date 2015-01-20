@@ -1,0 +1,28 @@
+#!/usr/bin/env node
+var program = require('commander');
+var helpers = require('../../../helpers');
+var table   = require('cli-table');
+var _       = require('underscore');
+
+program
+  .option('-c, --containerName <Container Name>', 'Name of the container to delete')
+  .parse(process.argv);
+
+var config = program.config;
+if (!config) {
+  config = process.env['HOME']+'/pkgcloud-cli.json';
+}
+
+
+var getContainerResult = function (err) {
+  if (err) {
+    console.log(err.message);
+  }
+  else {
+    console.log('The container was successfully deleted.')
+  }
+};
+
+helpers.init(config, helpers.CLIENT_TYPES.storage, function(err, client) {
+  client.destroyContainer(program.containerName, getContainerResult);
+});

@@ -1,0 +1,28 @@
+#!/usr/bin/env node
+var program = require('commander');
+var helpers = require('../../../helpers');
+var table   = require('cli-table');
+var _       = require('underscore');
+
+program
+  .option('-z, --zoneid <Zone ID>', 'Id of Zone you wish to delete')
+  .parse(process.argv);
+
+var config = program.config;
+if (!config) {
+  config = process.env['HOME']+'/pkgcloud-cli.json';
+}
+
+
+var getZoneResult = function (err) {
+  if (err) {
+    console.log(err.message);
+  }
+  else {
+    console.log('The zone was successfully deleted.')
+  }
+};
+
+helpers.init(config, helpers.CLIENT_TYPES.dns, function(err, client) {
+  client.deleteZone(program.zoneid, getZoneResult);
+});

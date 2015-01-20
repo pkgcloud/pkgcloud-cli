@@ -1,0 +1,44 @@
+#!/usr/bin/env node
+var program = require('commander');
+var helpers = require('../../../helpers');
+var table   = require('cli-table');
+var _       = require('underscore');
+
+program
+  .option('-c, --containerName <Container Name>', 'Unique Container Name')
+  .parse(process.argv);
+
+var config = program.config;
+if (!config) {
+  config = process.env['HOME']+'/pkgcloud-cli.json';
+}
+
+var printFiles = function(files) {
+  var t;
+  t = new table({
+    head: ['File Name', 'Content Type', 'Size', 'Last Modified'],
+    colWidths: [40, 35, 15, 45]
+  });
+  _.each(files, function(file) {
+    t.push([file.name, file.contentType, 
+    file.size || 'N/A', file.lastModified]);
+  });
+  console.log(t.toString());
+};
+
+var listFiles = function listFiles(err, files) {
+  if (err) {
+    console.log(err.message);
+  }
+  else {
+    printFiles(files);
+  }
+};
+
+helpers.init(config, helpers.CLIENT_TYPES.storage, function(err, client) {
+  if (!program.containerName) {
+    console.log('You must specify a container name');
+    process.exit(1)
+  }
+  client.getFiles(program.containerName, listFiles);
+});

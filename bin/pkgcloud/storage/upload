@@ -1,0 +1,53 @@
+#!/usr/bin/env node
+var program = require('commander');
+var helpers = require('../../../helpers');
+var path    = require('path');
+var fs      = require('fs');
+
+program
+  .option('-c, --containerName <Container Name>', 'Unique Container Name')
+  .option('-f, --fileName <File Name>', 'Unique File Name')
+  .option('-i, --input <File>', 'File to upload')
+  .parse(process.argv);
+
+var config = program.config;
+if (!config) {
+  config = process.env.HOME+'/pkgcloud-cli.json';
+}
+
+helpers.init(config, helpers.CLIENT_TYPES.storage, function(err, client) {
+  if (!program.containerName) {
+    console.log('You must specify a container name');
+    process.exit(1);
+  }
+  if (!program.fileName && !program.input) {
+    console.log('You must specify a file name or an input to upload');
+    process.exit(1);
+  }
+
+  var readStream;
+  var filename;
+  if (program.input) {
+    readStream = fs.createReadStream(program.input);
+    filename = program.fileName || path.basename(program.input);
+  }
+  else { // file data coming from stdin
+    readStream = process.stdin;
+    filename = program.fileName;
+  }
+  var writeStream = client.upload({
+    container: program.containerName,
+    remote: filename
+  });
+
+  writeStream.on('error', function(err) {
+    console.log(err.message || 'File not uploaded successfully');
+    process.exit(1);
+  });
+
+  writeStream.on('success', function(file) {
+    console.log('File',file.name,'has been uploaded successfully');
+  });
+
+  readStream.pipe(writeStream);
+});
