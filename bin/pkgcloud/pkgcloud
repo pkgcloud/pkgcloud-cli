@@ -11,5 +11,4 @@ program
   .command('database', 'Database commands')
   .command('dns', 'DNS commands')
   .command('network', 'Network commands')
-  .command('orchestration', 'Heat commands')
   .parse(process.argv);
