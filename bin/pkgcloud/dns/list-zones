@@ -1,0 +1,39 @@
+#!/usr/bin/env node
+var program = require('commander');
+var helpers = require('../../../helpers');
+var table   = require('cli-table');
+var _       = require('underscore');
+
+program
+  .option('-c, --config <path>', 'set config path [./cloud.json]')
+  .parse(process.argv);
+
+var config = program.config;
+if (!config) {
+  config = process.env['HOME']+'/pkgcloud-cli.json';
+}
+
+var print_dns_list = function( items) {
+  var t;
+  t = new table({
+    head: ['Zone ID', 'Zone Name'],
+    colWidths: [20, 20]
+  });
+  _.each(items, function(zone) {
+    t.push([zone.id, zone.name]);
+  });
+  console.log(t.toString());
+};
+
+var listZones = function (err, zones) {
+  if (err) {
+    console.log(err.message);
+  }
+  else {
+    print_dns_list(zones);
+  }
+};
+
+helpers.init(config, helpers.CLIENT_TYPES.dns, function(err, client) {
+  client.getZones(listZones);
+});

@@ -1,0 +1,30 @@
+#!/usr/bin/env node
+var program = require('commander');
+var helpers = require('../../../helpers');
+
+program
+  .option('-c, --config <path>', 'set config path [./cloud.json]')
+  .option('-i, --image <imageId>', 'ImageId of the image to delete')
+  .parse(process.argv);
+
+var config = program.config;
+if (!config) {
+  config = process.env.HOME+'/pkgcloud-cli.json';
+}
+
+if (!program.image) {
+  console.log('You must specify an imageId');
+  process.exit(1);
+}
+
+helpers.init(config, helpers.CLIENT_TYPES.compute, function(err, cloud) {
+  cloud.destroyImage(program.image, function(err, image) {
+    if (err) {
+      console.log(err);
+      process.exit(1);
+    }
+    console.log('Image '+program.image+' has been deleted');
+  });
+});
+
+

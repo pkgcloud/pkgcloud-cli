@@ -1,0 +1,31 @@
+#!/usr/bin/env node
+var program = require('commander');
+var helpers = require('../../../helpers');
+var table = require('cli-table');
+
+program
+  .option('-c, --config <path>', 'set config path [./cloud.json]')
+  .parse(process.argv);
+
+var config = program.config;
+if (!config) {
+  config = process.env['HOME']+'/pkgcloud-cli.json';
+}
+
+var outputNetworks = function(err, networks) {
+  if (err) {
+    console.log(err);
+    process.exit(1);
+  }
+  var tbl = new table(helpers.getNetworkTableDefinition());
+  for (var iter in networks) {
+    var ntwrk = networks[iter];
+    var data = helpers.getNetworkRow(ntwrk);
+    tbl.push(data);
+  }
+  console.log(tbl.toString());
+};
+
+helpers.init(config, helpers.CLIENT_TYPES.network, function(err, cloud) {
+  cloud.getNetworks(outputNetworks);
+});

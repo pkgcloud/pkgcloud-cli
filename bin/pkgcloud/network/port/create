@@ -1,0 +1,40 @@
+#!/usr/bin/env node
+var program = require('commander');
+var helpers = require('../../../../helpers');
+var table = require('cli-table');
+
+program
+  .option('-a, --name <port Name>', 'Desired port name')
+  .option('-s, --shared <shared>', 'False (default) if the port is hidden, True if public')
+  .option('-t, --tenantId <tenantId>', 'The tenant Id')
+  .option('-n, --networkId <networkId>', 'The network Id')
+  .parse(process.argv);
+
+var config = program.config;
+if (!config) {
+  config = process.env['HOME']+'/pkgcloud-cli.json';
+}
+
+
+var getPortResult = function (err, port) {
+  if (err) {
+    console.log(err.message);
+  }
+  else {
+    console.log('The port was successfully created.');
+    var tbl = new table(helpers.getPortTableDefinition()),
+    data = helpers.getPortRow(port);
+    tbl.push(data);
+    console.log(tbl.toString());
+  }
+};
+
+helpers.init(config, helpers.CLIENT_TYPES.network, function(err, client) {
+  var det = {
+    name: program.name,
+    shared: program.shared,
+    tenantId: program.tenantId,
+    networkId: program.networkId
+  };
+  client.createPort(det, getPortResult);
+});

@@ -1,0 +1,10 @@
+#!/usr/bin/env node
+var program = require('commander');
+var helpers = require('./helpers');
+
+program
+  .option('-c, --config <Path to Config file>', 'Desired location for config file to be written')
+  .parse(process.argv);
+  
+
+helpers.writeBlankInit(program.config);

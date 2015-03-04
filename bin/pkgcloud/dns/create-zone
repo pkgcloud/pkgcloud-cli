@@ -1,0 +1,37 @@
+#!/usr/bin/env node
+var program = require('commander');
+var helpers = require('../../../helpers');
+var table   = require('cli-table');
+var _       = require('underscore');
+
+program
+  .option('-n, --name <Zone Name>', 'Desired Zone name (i.e. domain.com)')
+  .option('-e, --email <admin email>', 'Admin email (i.e. admin@domain.com)')
+  .option('-t, --ttl <timtolive>', 'Number of seconds for dns request to live')
+  .option('-c, --comment <message>', 'Small notes or message for this Zone')
+  .parse(process.argv);
+
+var config = program.config;
+if (!config) {
+  config = process.env['HOME']+'/pkgcloud-cli.json';
+}
+
+
+var getZoneResult = function (err) {
+  if (err) {
+    console.log(err.message);
+  }
+  else {
+    console.log('The zone was successfully created.')
+  }
+};
+
+helpers.init(config, helpers.CLIENT_TYPES.dns, function(err, client) {
+  det = {
+    name: program.name,
+    email: program.email,
+    ttl: program.ttl || 300,
+    comment: program.comment || ''
+  };
+  client.createZone(det, getZoneResult);
+});

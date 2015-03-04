@@ -1,0 +1,36 @@
+#!/usr/bin/env node
+var program = require('commander');
+var helpers = require('../../../helpers');
+var table   = require('cli-table');
+var _       = require('underscore');
+
+program
+  .option('-z, --zoneid <Zone Id>', 'Unique Zone Id')
+  .option('-n, --name <Record name>', 'Name of the Zone Record you are adding (i.e. www.somewhere.com)')
+  .option('-t, --type <Record Type>', 'DNS Record Type (i.e. A, AAAA, CNAME, etc.)')
+  .option('-d, --data <Data Content>', '(i.e. IP address for A, Hostname for CNAME)')
+  .parse(process.argv);
+
+var config = program.config;
+if (!config) {
+  config = process.env['HOME']+'/pkgcloud-cli.json';
+}
+
+
+var getZoneRecordResult = function (err) {
+  if (err) {
+    console.log(err.message);
+  }
+  else {
+    console.log('The Zone Record was successfully created.')
+  }
+};
+
+helpers.init(config, helpers.CLIENT_TYPES.dns, function (err, client) {
+  det = {
+    name: program.name,
+    type: program.type,
+    data: program.data
+  };
+  client.createRecord(program.zoneid, det, getZoneRecordResult);
+});

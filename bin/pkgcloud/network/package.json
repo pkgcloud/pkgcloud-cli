@@ -1,0 +1,4 @@
+{
+    "name" : "pkgcloud-network",
+    "main" : "./network" 
+}

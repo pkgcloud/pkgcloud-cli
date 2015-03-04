@@ -1,6 +1,8 @@
 var cloud = require('pkgcloud');
 var fs = require('fs');
+var osenv = require('osenv');
 var table = require('cli-table');
+var path = require('path');
 var dateformat = require('dateformat');
 var prettyjson = require('prettyjson');
 var _ = require('underscore');
@@ -10,11 +12,11 @@ var exports = {};
 var client;
 
 var CLIENT_TYPES = {
-  'compute'  : 'COMPUTE',
-  'database' : 'DATABASE',
-  'storage'  : 'STORAGE',
-  'dns'      : 'DNS',
-  'network'  : 'NETWORK'
+  'compute'       : 'COMPUTE',
+  'database'      : 'DATABASE',
+  'storage'       : 'STORAGE',
+  'dns'           : 'DNS',
+  'network'       : 'NETWORK'
 };
 
 exports.CLIENT_TYPES = CLIENT_TYPES;
@@ -90,7 +92,6 @@ exports.init = function(config, type, callback) {
   if (type === CLIENT_TYPES.storage) {
     client = cloud.storage.createClient(config.storage[0]);
   }
-
   if(client) {
     client.on("log::error", globalErrorHandler);
   }
@@ -157,6 +158,39 @@ exports.getPortRow = function(network) {
       network.macAddress || 'N/A',
       network.fixedIps === undefined ? 'N/A' : deserializeFixedIPs(network.fixedIps),
       network.securityGroups === undefined ? 'N/A' : deserializeSecurityGroups(network.securityGroups)];
+}
+
+exports.writeBlankInit = function(configPath) {
+  configPath = configPath || path.join(osenv.home(), 'pkgcloud-cli.json');
+  if (fs.existsSync(configPath)) {
+    console.log('Warning:', configPath, 'file already exists. Not over-writing');
+  }
+  else {
+    fs.writeFile(configPath, JSON.stringify(blankInit, null, '  '), function (err) {
+        if (err) throw err;
+        console.log('Example config.json file has been written to', configPath);
+    });
+  }
+};
+
+var blankInit = {
+  compute: [
+    {
+      authUrl: "https://identity.api.rackspacecloud.com",
+      region: "DFW",
+      provider: "rackspace",
+      username: "ABCD",
+      apiKey: "1234"
+    }
+  ],
+  storage: [
+  ],
+  database: [
+  ],
+  dns: [
+  ],
+  network: [
+  ]
 };
 
 module.exports = exports;

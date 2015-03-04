@@ -1,0 +1,46 @@
+#!/usr/bin/env node
+var program = require('commander');
+var helpers = require('../../../helpers');
+var path    = require('path');
+
+program
+  .option('-c, --containerName <Container Name>', 'Unique Container Name')
+  .option('-f, --file <File Name>', 'File Name to download')
+  .option('-o, --output <File>', 'File to output')
+  .parse(process.argv);
+
+var config = program.config;
+if (!config) {
+  config = process.env.HOME+'/pkgcloud-cli.json';
+}
+
+
+var getFileDetails = function (err, file) {
+  if (err || !file) {
+    console.log(err.message || 'File did not download successfully');
+    process.exit(1);
+  }
+  console.log('File has been downloaded successfully');
+};
+
+helpers.init(config, helpers.CLIENT_TYPES.storage, function(err, client) {
+  if (!program.containerName) {
+    console.log('You must specify a container name');
+    process.exit(1);
+  }
+  if (!program.file) {
+    console.log('You must specify a file to download');
+    process.exit(1);
+  }
+  var options = {
+    container: program.containerName,
+    remote: program.file
+  };
+  if (program.output) {
+    options.local = path.resolve(program.output);
+  }
+  var fStream = client.download(options, getFileDetails);
+  if (!program.output) {
+    fStream.pipe(process.stdout);
+  }
+});
