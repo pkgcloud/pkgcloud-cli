@@ -5,7 +5,4 @@ program
   .command('list', 'List networks')
   .command('create', 'Create new network')
   .command('destroy', 'Destroy a network')
-  .command('port-list', 'List ports')
-  .command('port-create', 'Create new port')
-  .command('port-destroy', 'Destroy a port')
   .parse(process.argv);
