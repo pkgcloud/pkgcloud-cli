@@ -1,0 +1,8 @@
+#!/usr/bin/env node
+var program = require('commander');
+
+program
+  .command('list', 'List ports')
+  .command('create', 'Create new port')
+  .command('destroy', 'Destroy a port')
+  .parse(process.argv);

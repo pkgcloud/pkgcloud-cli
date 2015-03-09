@@ -5,6 +5,7 @@ var table = require('cli-table');
 var path = require('path');
 var dateformat = require('dateformat');
 var prettyjson = require('prettyjson');
+var _ = require('underscore');
 
 var exports = {};
 
@@ -19,6 +20,26 @@ var CLIENT_TYPES = {
 };
 
 exports.CLIENT_TYPES = CLIENT_TYPES;
+
+var deserializeFixedIPs = function (arrayObj){
+  var strArray = '',
+  index = 0;
+  for(index=0; index< arrayObj.length ; index++){
+    strArray += "Subnet ID : " + arrayObj[index].subnet_id + "\n"+"IP Address: " + arrayObj[index].ip_address +   "\n";
+  }
+  return strArray;
+};
+
+var deserializeSecurityGroups = function (arrayObj){
+  var strArray = '',
+  index = 0;
+  for(index=0; index< arrayObj.length ; index++){
+    strArray += arrayObj[index] + "\n";
+  }
+
+  return strArray;
+};
+
 
 var loadConfig = function (file) {
   try {
@@ -118,6 +139,26 @@ exports.getNetworkRow = function(network) {
       network.adminStateUp || 'N/A',
       network.shared || 'N/A'];
 };
+
+exports.getPortTableDefinition = function() {
+ return {
+    head: ['ID', 'Tenant ID', 'Network ID', 'NAME', 'Status', 'Up', 'Mac Address', 'Fixed IPs', 'Security Groups'],
+    colWidths: [40, 40, 40, 30, 10, 10, 20, 50, 50]
+  };
+};
+
+exports.getPortRow = function(network) {
+  return  [
+      network.id,
+      network.tenantId || 'N/A',
+      network.networkId || 'N/A',
+      network.name || 'N/A',
+      network.status || 'N/A',
+      network.adminStateUp || 'N/A',
+      network.macAddress || 'N/A',
+      network.fixedIps === undefined ? 'N/A' : deserializeFixedIPs(network.fixedIps),
+      network.securityGroups === undefined ? 'N/A' : deserializeSecurityGroups(network.securityGroups)];
+}
 
 exports.writeBlankInit = function(configPath) {
   configPath = configPath || path.join(osenv.home(), 'pkgcloud-cli.json');
